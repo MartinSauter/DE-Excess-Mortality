@@ -141,4 +141,4 @@ plt.tight_layout()
 
 
 
-plt.savefig("../figures/Fig 2 de fit 13-19 inkl psc.png")
+plt.savefig("../figures/Fig2 de fit 13-19 inkl psc.png")
