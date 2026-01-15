@@ -85,4 +85,4 @@ plt.legend(loc="upper left",facecolor="white",
 
 plt.tight_layout()
 
-plt.savefig("de multi lr.png")
+plt.savefig("Fig1 de multi lr.png")
