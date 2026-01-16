@@ -1,0 +1,12 @@
+Gruppe:	0-14		Absolut:	-431	Relativ:	-11.55%	Absolut:	-428	Relativ:	-11.28%	Absolut:	-407	Relativ:	-10.57%	Absolut:	-480	Relativ:	-12.27%	sigma_min:	-3.91%	sigma_max:	8.36%
+Gruppe:	15-29		Absolut:	-142	Relativ:	-3.57%	Absolut:	24	Relativ:	0.63%	Absolut:	280	Relativ:	7.31%	Absolut:	180	Relativ:	4.81%	sigma_min:	-3.14%	sigma_max:	4.93%
+Gruppe:	30-39		Absolut:	-19	Relativ:	-0.28%	Absolut:	35	Relativ:	0.51%	Absolut:	193	Relativ:	2.81%	Absolut:	-141	Relativ:	-2.03%	sigma_min:	-3.01%	sigma_max:	2.61%
+Gruppe:	40-59		Absolut:	168	Relativ:	0.23%	Absolut:	3763	Relativ:	5.25%	Absolut:	1717	Relativ:	2.42%	Absolut:	-1029	Relativ:	-1.47%	sigma_min:	-1.81%	sigma_max:	1.43%
+Gruppe:	60-79		Absolut:	-1716	Relativ:	-0.53%	Absolut:	10219	Relativ:	3.17%	Absolut:	15277	Relativ:	4.76%	Absolut:	9378	Relativ:	2.93%	sigma_min:	-2.14%	sigma_max:	1.97%
+Gruppe:	80+		Absolut:	24553	Relativ:	4.43%	Absolut:	35583	Relativ:	6.27%	Absolut:	63463	Relativ:	10.94%	Absolut:	23154	Relativ:	3.9%	sigma_min:	-3.77%	sigma_max:	2.22%
+Gruppe:	0-14		Absolut:	-431	Relativ:	-11.55%	Absolut:	-428	Relativ:	-11.28%	Absolut:	-407	Relativ:	-10.57%	Absolut:	-480	Relativ:	-12.27%	sigma_min:	-3.91%	sigma_max:	8.36%
+Gruppe:	15-29		Absolut:	-142	Relativ:	-3.57%	Absolut:	24	Relativ:	0.63%	Absolut:	280	Relativ:	7.31%	Absolut:	180	Relativ:	4.81%	sigma_min:	-3.14%	sigma_max:	4.93%
+Gruppe:	30-39		Absolut:	-19	Relativ:	-0.28%	Absolut:	35	Relativ:	0.51%	Absolut:	193	Relativ:	2.81%	Absolut:	-141	Relativ:	-2.03%	sigma_min:	-3.01%	sigma_max:	2.61%
+Gruppe:	40-59		Absolut:	168	Relativ:	0.23%	Absolut:	3763	Relativ:	5.25%	Absolut:	1717	Relativ:	2.42%	Absolut:	-1029	Relativ:	-1.47%	sigma_min:	-1.81%	sigma_max:	1.43%
+Gruppe:	60-79		Absolut:	-1716	Relativ:	-0.53%	Absolut:	10219	Relativ:	3.17%	Absolut:	15277	Relativ:	4.76%	Absolut:	9378	Relativ:	2.93%	sigma_min:	-2.14%	sigma_max:	1.97%
+Gruppe:	80+		Absolut:	24553	Relativ:	4.43%	Absolut:	35583	Relativ:	6.27%	Absolut:	63463	Relativ:	10.94%	Absolut:	23154	Relativ:	3.9%	sigma_min:	-3.77%	sigma_max:	2.22%
