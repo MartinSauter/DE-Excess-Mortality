@@ -44,7 +44,7 @@ plt.clf()
 plt.style.use("classic")
 plt.rcParams["lines.linewidth"]=2
 plt.rcParams['font.family'] = 'Arial'
-plt.rcParams["font.size"]=14
+plt.rcParams["font.size"]=13
 plt.rcParams['axes.prop_cycle'] = cycler('color',
                                          plt.get_cmap('Paired').colors)
 
@@ -79,13 +79,7 @@ for m in monate:
     d_lo.append(xtrapol1*(1+min_sigma))
     d_hi.append(xtrapol1*(1+max_sigma))
     
-    #--------
-    # t_16_19=df[df.keys()[m]].to_numpy()[3:7]
-    # lr2=linregress(y_16_19,t_16_19)
-    # xtrapol2=lr2.intercept+lr2.slope*2022
-    # bl_16_19.append(xtrapol2)
-
-#t=df[df["Jahr"]==2022].to_numpy()[0][1:13]
+  
 
 plt.xlim(1,12)
 plt.xticks(monate,labels=[])
@@ -93,7 +87,7 @@ plt.ylim(240,460)
 plt.grid(True)
 
 plt.plot(monate,bl_13_19,label="Trend Projection from 2013-2019")
-
+plt.ylabel("Deaths per month in Age Group 15-29")
 #plt.plot(monate,bl_16_19,label="16-19")
 t_2022=df[df["Jahr"]==2022].to_numpy()[0][1:13]
 
@@ -144,4 +138,4 @@ plt.plot(abwasser["Monat"],abwasser["viruslast"]/4000,label="Wastewater Load (sc
 
 plt.legend(loc="upper left",edgecolor="none",fontsize=10)
 
-plt.savefig("../figures/Fig 6 EXZM 15-29 in 2022 plus Abwasser.png")
+plt.savefig("../figures/Fig 4 Exm 15-29 in 2022 plus Abwasser.png")

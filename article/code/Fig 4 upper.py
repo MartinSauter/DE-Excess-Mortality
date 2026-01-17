@@ -19,7 +19,7 @@ fig,ax=plt.subplots(1,1,figsize=(12,8),dpi=100)
 plt.style.use("classic")
 plt.rcParams["lines.linewidth"]=2
 plt.rcParams['font.family'] = 'Arial'
-plt.rcParams["font.size"]=14
+plt.rcParams["font.size"]=13
 plt.rcParams['axes.prop_cycle'] = cycler('color',
                                          plt.get_cmap('Paired').colors)
 
@@ -51,6 +51,8 @@ ax.plot(ag[1:8],f,ls="-",lw=2,color="dodgerblue",
 
 ax.set_yscale("log")
 ax.set_xlabel("Median of age brackets")
+
+ax.set_ylabel("Deaths normalised to members of Age Group")
 ax.grid(True)
 ax.legend(loc="upper left",edgecolor="white")
 

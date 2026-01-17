@@ -31,7 +31,7 @@ fig,ax=plt.subplots(3,2,figsize=(12,8),dpi=100)
 plt.style.use("classic")
 plt.rcParams["lines.linewidth"]=2
 plt.rcParams['font.family'] = 'Arial'
-plt.rcParams["font.size"]=14
+plt.rcParams["font.size"]=13
 plt.rcParams['axes.prop_cycle'] = cycler('color',
                                          plt.get_cmap('Paired').colors)
 
@@ -89,7 +89,7 @@ for ag in (ag0,ag15,ag30,ag40,ag60,ag80):
     x=k%2
     y=k//2
     
-    
+    if x==0:ax[y,x].set_ylabel("Annual Deaths in Age Group")
     ax[y,x].grid(True)
     ax[y,x].plot(jahre,ag,label=lbls[k],marker="x",linestyle="--",color="dodgerblue")
     

@@ -48,6 +48,8 @@ ax.plot(ag[1:],f[1:],ls="-",lw=2,color="dodgerblue",
 
 ax.set_yscale("log")
 ax.set_xlabel("Median of age brackets")
+
+ax.set_ylabel("Relative Risk for Excess Deaths in Age Group")
 ax.grid(True)
 ax.legend(loc="upper left",edgecolor="white")
 

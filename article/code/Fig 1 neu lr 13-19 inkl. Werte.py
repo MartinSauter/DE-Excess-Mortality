@@ -45,7 +45,7 @@ plt.figure(figsize=(10,7),dpi=100)
 plt.clf()
 plt.style.use("classic")
 plt.rcParams['font.family'] = 'Arial'
-
+plt.rcParams['font.size'] = 13
 plt.xlim(2009,2024)
 plt.ylim(8e5,1.1e6)
 
@@ -66,7 +66,8 @@ ax.set_yticks(np.linspace(8e5,1.1e6,7))
 ax.yaxis.set_major_formatter(FuncFormatter(format_func))
 
 
-plt.xlabel("Year",fontsize="16")
+plt.xlabel("Year")
+plt.ylabel("Annual Deaths")
 ax.spines[:].set_color('black')
 
 f1= 951834+11328*(j-2019)
