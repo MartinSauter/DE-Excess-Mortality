@@ -39,6 +39,7 @@ plt.figure(figsize=(10,7),dpi=100)
 plt.clf()
 plt.style.use("classic")
 plt.rcParams['font.family'] = 'Arial'
+plt.rcParams['font.size'] = 13
 plt.rcParams['axes.prop_cycle'] = cycler('color',
                                           plt.get_cmap('Paired').colors)
 
@@ -65,8 +66,9 @@ ax.yaxis.set_major_formatter(FuncFormatter(format_func))
 
 
 
-plt.xlabel("Year",fontsize="16")
+plt.xlabel("Year",fontsize="13")
 ax.spines[:].set_color('black')
+plt.ylabel("Annual Deaths",fontsize="13")
 
 
 for sj in np.arange(0,7):

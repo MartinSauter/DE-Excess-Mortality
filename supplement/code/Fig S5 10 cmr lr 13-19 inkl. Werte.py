@@ -54,7 +54,7 @@ plt.figure(figsize=(10,7),dpi=100)
 plt.clf()
 plt.style.use("classic")
 plt.rcParams['font.family'] = 'Arial'
-
+plt.rcParams['font.size'] = 13
 plt.xlim(2009,2024)
 
 
@@ -78,23 +78,14 @@ ax.set_xticklabels(np.linspace(2010,2023,14).astype(int),
 plt.xlabel("Year",fontsize="16")
 ax.spines[:].set_color('black')
 
-
+plt.ylabel("Annual Deaths per 1000 Inh.")
 
 
 plt.plot(j,f1,marker="",linewidth=2,
               label="Linear Model 2013-2019 ",
               ls="-",color="dodgerblue",alpha=1)
 
-#############################################################
 
-# plt.fill_between(j,tmin,tmax,color="gainsboro",
-#                  alpha=0.3)
-   
-##############################################################
-#
-# P-score und Pfeile
-
-# psc=(t/f1-1)*100
 
 rel1,rel2=psc[4],psc[5]
 r1 = patches.FancyArrowPatch((2014,cmr[4]*1.002), (2014,f1[4]*0.998), 

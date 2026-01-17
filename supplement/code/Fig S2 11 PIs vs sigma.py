@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Mon Oct 28 11:30:36 2024
@@ -23,6 +24,8 @@ plt.figure(figsize=(10,7),dpi=100)
 plt.clf()
 plt.style.use("classic")
 plt.rcParams['font.family'] = 'Arial'
+plt.rcParams['font.size'] = 13
+
 plt.rcParams['axes.prop_cycle'] = cycler('color',
                                          plt.get_cmap('Paired').colors)
 
@@ -78,6 +81,7 @@ ax.set_xticklabels(np.linspace(2012,2023,12).astype(int),
                   rotation=45)
 
 plt.xlabel("Year")
+plt.ylabel("Annual Deaths")
 
 ax.yaxis.set_major_formatter(FuncFormatter(format_func))
 
