@@ -40,9 +40,6 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',
 pop=[4325719, 4366360,4544298 ,4729203,4941910,5150685,5389106,5681135,
 5936434,6111655,6112952]
 
-# pop=[84669326,84358845,83237124,	83155031	,83166711,83019213,82792351,	82521653	,
-#      82175684,81197537,80767463,	80523746	,80327900,81751602,81802257,82002356	]
-
 
 jahre=np.linspace(2013,2023,11).astype(int)
 
@@ -79,6 +76,11 @@ c=plt.get_cmap('Paired').colors
 m=(pop[-1]-pop[0])/10
 b=pop[0]
 pop_corr=b+m*(jahre-2013)
+
+# export for further usage
+
+np.savetxt("pop80.csv",pop,fmt="%d",delimiter=";")
+np.savetxt("pop80_corr.csv",pop_corr,fmt="%d",delimiter=";")
 
 ax.plot(jahre,pop_corr,color=c[1],lw=2,ls=(0, (20, 15)),
         label="Corrected by Interpolation"
