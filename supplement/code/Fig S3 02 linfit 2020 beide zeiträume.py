@@ -25,8 +25,8 @@ plt.style.use("classic")
 #   Ab 22.10: Excel csv mit ";"
 
 
-tmp=pd.read_csv("DEUTNPstfmout_wochen.csv",sep=",",
-                encoding="ISO8859-1",index_col=0)
+tmp=pd.read_csv("../../data_proc/deaths/DEUTNPstmfout_weeks.csv",sep=",",
+                encoding="ISO8859-1",index_col=None)
 
 
 woche_marker_13bis19=[]     
@@ -137,18 +137,6 @@ plt.plot(np.linspace(1,53,53),d_2020,color="red",
 ##################################
 
 
-# Schattierung
-#plt.gca().fill_between(np.linspace(1,52,52),hi_b,lo_b,color="gainsboro")
-
-#plt.plot(np.linspace(1,52,52),lo_b,color="grey")
-#plt.plot(np.linspace(1,52,52),hi_b,color="grey")
-
-# for year in [2018,2019,2020,2021]:
-#     w=tmp[tmp["Year"]==year].to_numpy()
-#     if year==2018:
-#         plt.plot(w[:,1],w[:,2],color="grey",label="Years from 2018-2021")
-#     else:
-#           plt.plot(w[:,1],w[:,2],color="grey")
 
 
 handles, labels = plt.gca().get_legend_handles_labels()
@@ -167,4 +155,4 @@ plt.legend(handles,labels,loc="upper left",
 
 plt.tight_layout()
 
-plt.savefig("../figures/Fig S3 de üs 2020 baselines.png")
+plt.savefig("../figures/Fig S3 de üs 2020 2 baselines.png")

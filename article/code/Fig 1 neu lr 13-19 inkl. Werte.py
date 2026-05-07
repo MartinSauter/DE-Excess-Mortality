@@ -11,7 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.ticker import FuncFormatter
-
+import pandas as pd
+from scipy.stats import linregress
 
 
 
@@ -24,21 +25,18 @@ def format_func(value, tick_number):
 ###########################################
 colors=["red","green","blue","gold","magenta","cyan","black","grey","gold","indigo","lightgreen"]
 
-# def psc(x,xref):
-#    #print(x[1])
-#    ret=[]
-#    for k in np.linspace(0,2,3):
-#         #print(k)
-#         tmp=100*(x[int(k)]/xref[int(k)]-1)
-#         #print(tmp)
-#         ret.append(tmp)
-#    return ret
+df=pd.read_csv("../../data_raw/deaths/12613-0002_de.csv",delimiter=";",
+               skiprows=5,skipfooter=4,index_col=0,engine='python')
+
+j=df.index.to_numpy()
+t=df["Insgesamt"].to_numpy()
 
 
-j=np.linspace(2010,2023,14)
-t=np.asarray([858768,852328,869582,893825,868356,
-               925200,910902,932272,954874,939520,
-               985572,1023687,1066341,1028206])
+
+# j=np.linspace(2010,2023,14)
+# t=np.asarray([858768,852328,869582,893825,868356,
+#                925200,910902,932272,954874,939520,
+#                985572,1023687,1066341,1028206])
 
 ################################
 plt.figure(figsize=(10,7),dpi=100)
@@ -70,7 +68,17 @@ plt.xlabel("Year")
 plt.ylabel("Annual Deaths")
 ax.spines[:].set_color('black')
 
-f1= 951834+11328*(j-2019)
+#
+lf=linregress(j[3:10]-2019,t[3:10].astype(int))
+
+
+# Fit
+f1=(j-2019)*lf.slope+lf.intercept  
+print(f"Slope {lf.slope}; Intercept {lf.intercept}")
+
+
+
+#f1= 951834+11328*(j-2019)
 
 
 plt.plot(j,f1,marker="",linewidth=2,
@@ -142,4 +150,4 @@ plt.tight_layout()
 
 
 
-plt.savefig("../figures/Fig 1 de fit 13-19 inkl psc.png")
+#plt.savefig("../figures/Fig 1 de fit 13-19 inkl psc.png",dpi=1000)

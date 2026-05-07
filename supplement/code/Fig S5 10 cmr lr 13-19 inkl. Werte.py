@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.ticker import FuncFormatter
-
+import pandas as pd
 
 from scipy.stats import linregress
 
@@ -20,16 +20,52 @@ def format_func(value, tick_number):
     # Umständlich Tausendertrennzeichen, ohne Dezimalstellen
 
 
+###################################################
+
+j=np.linspace(2010,2023,14).astype(int)
+
+df=pd.read_csv("../../data_raw/deaths/12613-0002_de.csv",delimiter=";",
+               skiprows=5,skipfooter=4,index_col=0,engine='python')
+
+j=df.index.to_numpy()
+jf=j-2010
+t=df["Insgesamt"].to_numpy()
+
+"""
+array([ 858768,  852328,  869582,  893825,  868356,  925200,  910902,
+        932272,  954874,  939520,  985572, 1023687, 1066341, 1028206])
+"""
 
 
-j=np.linspace(2010,2023,14)
-t=np.asarray([858768,852328,869582,893825,868356,
-               925200,910902,932272,954874,939520,
-               985572,1023687,1066341,1028206])
 
 
-pop=[81802257,81751602,80327900,80523746,80767463,81197537,82175684,
- 	82521653	,82792351,83019213,83166711,83155031,83237124,84358845]
+###################################################
+
+
+df=pd.read_csv("../../data_raw/pop/12411-0005_$F.csv",sep=";",
+               skiprows=6,skipfooter=4,index_col=0,engine="python",
+               encoding="ISO8859")
+
+#  delete Data before 2010 and last (2024)
+df=df.iloc[:,5:19]
+
+
+
+
+# 31.12.2008 = 2009 in column headers
+j=np.linspace(2010,2023,14).astype(int)
+df.columns=j
+
+pop=df.loc["Insgesamt"].values
+
+"""
+array([81802257, 81751602, 80327900, 80523746, 80767463, 81197537,
+       82175684, 82521653, 82792351, 83019213, 83166711, 83155031,
+       83237124, 84358845])
+"""
+
+
+
      
 
 cmr=t/pop*1000
@@ -144,4 +180,4 @@ plt.tight_layout()
 
 
 
-plt.savefig("../figures/Fig S5 de fit cmr 13-19 inkl psc.png")
+#plt.savefig("../figures/Fig S5 de fit cmr 13-19 inkl psc.png")

@@ -37,11 +37,30 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',
 
 ########################################################################
 
-pop=[4325719, 4366360,4544298 ,4729203,4941910,5150685,5389106,5681135,
-5936434,6111655,6112952]
+df=pd.read_csv("../../data_proc/pop/Pop_20y.tsv",sep="\t",
+               index_col=0)
 
 
+
+
+# %%
+df=df.drop(columns=["2011","2012","2024"])
+# pop=[4325719, 4366360,4544298 ,4729203,4941910,5150685,5389106,5681135,
+# 5936434,6111655,6112952]
+
+
+
+# %%
 jahre=np.linspace(2013,2023,11).astype(int)
+x=0;y=0
+k=0
+
+
+pop80=df.loc["80+",:].values
+
+# pop=[4325719, 4366360,4544298 ,4729203,4941910,5150685,5389106,5681135,
+# 5936434,6111655,6112952]
+
 
 
 ax.set_xlim(2012,2024)
@@ -60,7 +79,7 @@ ax.spines[:].set_color('black')
 
 ax.set_ylabel("Population 80+")
 
-ax.plot(jahre,pop,lw=0.5,marker="o",color="salmon",
+ax.plot(jahre,pop80,lw=0.5,marker="o",color="salmon",
         markersize=10,
         markeredgecolor="salmon",ls="--",label="Estimates by NSO Destatis")
 #ax.set_ylabel("Number of Inhabitants of Age >80")
@@ -73,16 +92,16 @@ c=plt.get_cmap('Paired').colors
 
 # ######################################
 
-m=(pop[-1]-pop[0])/10
-b=pop[0]
-pop_corr=b+m*(jahre-2013)
+m=(pop80[-1]-pop80[0])/10
+b=pop80[0]
+pop80_corr=b+m*(jahre-2013)
 
 # export for further usage
 
-np.savetxt("pop80.csv",pop,fmt="%d",delimiter=";")
-np.savetxt("pop80_corr.csv",pop_corr,fmt="%d",delimiter=";")
+np.savetxt("../../data_proc/pop/pop80.csv",pop80,fmt="%d",delimiter=";")
+np.savetxt("../../data_proc/pop/pop80_corr.csv",pop80_corr,fmt="%d",delimiter=";")
 
-ax.plot(jahre,pop_corr,color=c[1],lw=2,ls=(0, (20, 15)),
+ax.plot(jahre,pop80_corr,color=c[1],lw=2,ls=(0, (20, 15)),
         label="Corrected by Interpolation"
         , alpha=0.5)
 plt.grid(True)

@@ -24,8 +24,28 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',plt.get_cmap('Paired').colors)
 ##################################
 # Read from files
 
-d15=np.loadtxt("d_ag15.csv",dtype=int) # years descending; so swap
-d15=np.flip(d15)
+
+df=pd.read_csv("../../data_raw/deaths/12613-0003_de.csv",sep=";",
+               skiprows=6,skipfooter=4,index_col=0,engine="python")
+
+# Keep only total number (delete m + f)
+
+df=df.iloc[25:37]
+
+# delete "Unknown" and "Total"
+df=df.drop(columns={"Alter unbekannt","Insgesamt"})
+
+
+# manipulate colums for better handling
+# column "unter 5" becomes 4 (int)
+df.columns=np.linspace(0,100,101).astype(int)
+
+#d0=df.loc[:,0:14].sum(axis=1).to_numpy()
+d15=df.loc[:,15:29].sum(axis=1).to_numpy()
+
+
+
+
 
 
 years=np.linspace(2013,2023,11).astype(int)
@@ -36,11 +56,15 @@ years=np.linspace(2013,2023,11).astype(int)
 d15_params_1=linregress(years[0:7]-2013,d15[0:7])
 d15_fit_1=d15_params_1.slope*(years-2013)+d15_params_1.intercept
 
+psc_1=d15/d15_fit_1-1
+
 ########################################
 #  Fit 16-19
 
 d15_params_2=linregress(years[3:7]-2016,d15[3:7])
 d15_fit_2=d15_params_2.slope*(years-2016)+d15_params_2.intercept
+
+psc_2=d15/d15_fit_2-1
 
 # #######################################
 
@@ -74,4 +98,36 @@ ax.plot(years[2:],d15_fit_2[2:],
 
 ax.legend(loc="lower left", edgecolor="white")
 
-plt.savefig("../figures/Fig S9 DN 15 29.png")
+#plt.savefig("../figures/Fig S9 DN 15 29.png")
+
+#Output For Tab S7
+print("Tab S7, P-Score AG 15-29")
+print("\t\t"+
+      f"{'2020':>10}"
+      f"{'2021':>10}"
+      f"{'2022':>10}"
+      f"{'2023':>10}"
+      f"{'Min.':>10}"
+      f"{'Max.':>10}"
+      )
+
+
+
+print("Trend 16-19"+
+      f"{psc_2[-4]:>10.2%}"
+      f"{psc_2[-3]:>10.2%}"
+      f"{psc_2[-2]:>10.2%}"
+      f"{psc_2[-1]:>10.2%}"
+      f"{min(psc_2[3:7]):>10.2%}"
+      f"{max(psc_2[3:7]):>10.2%}"
+      )
+
+print("Trend 13-19"+
+      f"{psc_1[-4]:>10.2%}"
+      f"{psc_1[-3]:>10.2%}"
+      f"{psc_1[-2]:>10.2%}"
+      f"{psc_1[-1]:>10.2%}"
+      f"{min(psc_1[0:7]):>10.2%}"
+      f"{max(psc_1[0:7]):>10.2%}"
+      )
+

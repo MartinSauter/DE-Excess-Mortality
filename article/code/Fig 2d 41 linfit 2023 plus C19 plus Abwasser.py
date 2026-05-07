@@ -25,8 +25,8 @@ plt.style.use("classic")
 #   Ab 22.10: Excel csv mit ";"
 
 
-tmp=pd.read_csv("DEUTNPstfmout_wochen.csv",sep=",",
-                encoding="ISO8859-1",index_col=0)
+tmp=pd.read_csv("../../data_proc/deaths/DEUTNPstmfout_weeks.csv",sep=",",
+                encoding="ISO8859-1",index_col=None)
 
 ################################################
 
@@ -142,7 +142,7 @@ plt.plot(np.linspace(1,52,52),d_hi,color="lightgrey",linestyle="--")
 handles, labels = plt.gca().get_legend_handles_labels()
 dummy = plt.Rectangle((0,0), 1, 1, fc="gainsboro", edgecolor = 'none')
 handles.append(dummy)
-labels.append("Sigma Min/Max")
+labels.append("Historical Min/Max")
 
 
 plt.legend(handles,labels,loc="upper center",
@@ -150,20 +150,17 @@ plt.legend(handles,labels,loc="upper center",
 
 # #################################
 
-c19tote=pd.read_csv('./c19_2023_tote_wochen.csv',
+c19tote=pd.read_csv('../../data_proc/covid-deaths/c19_2023_tote_wochen.csv',
                     delimiter=",")
 
-# c19tote=pd.read_csv('../../RKI/Todesfälle neu github/c19_2023_tote_wochen.csv',
-#                     delimiter=",")
 
-
-abwasser=pd.read_csv("./c19_2023_abwasser.csv")
+abwasser=pd.read_csv("../../data_proc/wastewater/c19_2023_abwasser.csv")
 
 ######################################
 handles, labels = plt.gca().get_legend_handles_labels()
 dummy = plt.Rectangle((0,0), 1, 1, fc="gainsboro", edgecolor = 'none')
 handles.append(dummy)
-labels.append("Sigma Min/Max")
+labels.append("Historical Min/Max")
 
 
 plt.legend(handles,labels,loc="upper center",
@@ -192,7 +189,7 @@ plt.plot(c19tote["Woche"],4*c19tote["Todesfaelle_neu"],
          label="COVID19-Deaths (x4)",
          color="black")
 
-plt.plot(abwasser["Woche"],abwasser["viruslast"]/200,
+plt.plot(abwasser["week"],abwasser["viruslast"]/200,
          label="COVID19 Wastewater Load (÷200)",
          color=mpl.colormaps["Paired"].colors[-4],ls="--")
 

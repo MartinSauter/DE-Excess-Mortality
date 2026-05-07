@@ -38,19 +38,32 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',
 ########################################################################
 
 
-pop=[84669326,84358845,83237124,	83155031	,83166711,83019213,82792351,	82521653	,
-     82175684,81197537,80767463,	80523746	,80327900,81751602,81802257,82002356	]
+
+df=pd.read_csv("../../data_raw/pop/12411-0005_$F.csv",sep=";",
+               skiprows=6,skipfooter=4,index_col=0,engine="python",
+               encoding="ISO8859")
+
+#  delete Data before 2009
+df=df.iloc[:,4:]
 
 
-jahre=np.linspace(2024,2009,16).astype(int)
+# 31.12.2008 = 2009 in column headers
+jahre=np.linspace(2009,2024,16).astype(int)
+df.columns=jahre
+
+pop=df.loc["Insgesamt"].values
+
+"""
+array([82002356, 81802257, 81751602, 80327900, 80523746, 80767463,
+       81197537, 82175684, 82521653, 82792351, 83019213, 83166711,
+       83155031, 83237124, 84358845, 84669326])
+"""
 
 
 
-ax.set_xticks(np.linspace(2009,2024,16).astype(int))
-ax.set_xticklabels(np.linspace(2009,2024,16).astype(int),
-                   rotation=45)
+ax.set_xticks(jahre)
+ax.set_xticklabels(jahre,rotation=45)
 
-#ax.set_yticks(np.linspace(8e5,1.1e6,7))
 
 # Formatter für die y-Achse setzen
 ax.yaxis.set_major_formatter(FuncFormatter(format_func))

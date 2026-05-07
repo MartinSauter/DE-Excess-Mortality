@@ -25,12 +25,36 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',plt.get_cmap('Paired').colors)
 
 ##################################
 # Read from files
+# Deaths
 
-d_80=np.loadtxt("d_ag80.csv",dtype=int) # years descending; so swap
-d_80=np.flip(d_80)
 
-pop_80=np.loadtxt("pop80.csv",dtype=int) # years ascending
-pop_80_corr=np.loadtxt("pop80_corr.csv",dtype=int)
+# d_80=np.loadtxt("d_ag80.csv",dtype=int) # years descending; so swap
+# d_80=np.flip(d_80)
+df=pd.read_csv("../../data_raw/deaths/12613-0003_de.csv",sep=";",
+               skiprows=6,skipfooter=4,index_col=0,engine="python")
+
+# Keep only total number (delete m + f)
+
+df=df.iloc[25:37]
+
+# delete "Unknown" and "Total"
+df=df.drop(columns={"Alter unbekannt","Insgesamt"})
+
+
+# manipulate colums for better handling
+# column "unter 5" becomes 4 (int)
+df.columns=np.linspace(0,100,101).astype(int)
+
+d_80=df.loc[:,80:101].sum(axis=1).to_numpy()
+
+
+############################################
+#
+# Pop 
+# load prepreprocessed
+#
+pop_80=np.loadtxt("../../data_proc/pop/pop80.csv",dtype=int) # years ascending
+pop_80_corr=np.loadtxt("../../data_proc/pop/pop80_corr.csv",dtype=int)
 
 # df=pd.read_excel("Überprüfung CMR mit KMR.xlsx",
 #                  sheet_name="ag 80+")
@@ -122,4 +146,47 @@ ax[1].fill_between(years,d_hi,d_lo,color="gainsboro",
 ax[1].legend(loc="lower left", edgecolor="white")
 
 
-plt.savefig("../figures/Fig S8 CMR KMR 80+.png")
+#plt.savefig("../figures/Fig S8 CMR KMR 80+.png")
+
+###########################################################
+# Output for Tab. S5
+
+print("Tab S5, P-Score CMR")
+print(f"{'2020':>10}"
+      f"{'2021':>10}"
+      f"{'2022':>10}"
+      f"{'2023':>10}"
+      f"{'Min.':>10}"
+      f"{'Max.':>10}"
+      )
+      
+print(f"{psc_cmr[-4]:>10.2%}"
+     f"{psc_cmr[-3]:>10.2%}"
+     f"{psc_cmr[-2]:>10.2%}"
+     f"{psc_cmr[-1]:>10.2%}"
+     f"{min(psc_cmr[0:6]):>10.2%}"
+     f"{max(psc_cmr[0:6]):>10.2%}"
+     )
+
+print("Tab S5, P-Score CorrMR")
+print(f"{'2020':>10}"
+      f"{'2021':>10}"
+      f"{'2022':>10}"
+      f"{'2023':>10}"
+      f"{'Min.':>10}"
+      f"{'Max.':>10}"
+      )
+      
+print(f"{psc_kmr[-4]:>10.2%}"
+     f"{psc_kmr[-3]:>10.2%}"
+     f"{psc_kmr[-2]:>10.2%}"
+     f"{psc_kmr[-1]:>10.2%}"
+     f"{min(psc_kmr[0:6]):>10.2%}"
+     f"{max(psc_kmr[0:6]):>10.2%}"
+     )
+
+
+
+#plt.savefig("../figures/Fig S5 de fit corrmr 13-19 inkl psc.png")
+
+

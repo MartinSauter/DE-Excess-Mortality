@@ -5,7 +5,7 @@ Created on Mon Oct 28 11:30:36 2024
 
 @author: Martin Sauter
 """
-
+import pandas as pd
 import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
@@ -31,10 +31,19 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',
 
 
 #################################################################
-j = np.linspace(2013,2023,11).astype(int).reshape(-1,1)
 
-t = np.array([893825,868356,925200,910902,932272,954874,
-              939520,985572,1023687,1066341,1028206])
+df=pd.read_csv("../../data_raw/deaths/12613-0002_de.csv",delimiter=";",
+               skiprows=5,skipfooter=4,index_col=0,engine='python')
+
+j=df.index.to_numpy()[3:].astype(int).reshape(-1,1)
+
+t=df["Insgesamt"].to_numpy()[3:]
+
+
+# j = np.linspace(2013,2023,11).astype(int).reshape(-1,1)
+
+# t = np.array([893825,868356,925200,910902,932272,954874,
+#               939520,985572,1023687,1066341,1028206])
 
 
 
@@ -111,7 +120,7 @@ plt.fill_between(j.flatten(),lower_sigma,upper_sigma,color="gainsboro",
 handles, labels = plt.gca().get_legend_handles_labels()
 dummy = plt.Rectangle((0,0), 1, 1, fc="gainsboro", edgecolor = 'none')
 handles.append(dummy)
-labels.append("Sigma Min/Max")
+labels.append("Historical Min/Max")
 
 
 plt.legend(handles,labels,loc="upper left",
