@@ -11,7 +11,7 @@ import numpy as np
 from scipy.stats import linregress
 from cycler import cycler
 from matplotlib.ticker import FuncFormatter
-
+from scipy.signal import savgol_filter
 
 
 def format_func(value, tick_number):
@@ -175,7 +175,14 @@ plt.plot(c19tote["Woche"],c19tote["Tote"],
          color="black",lw=2)
 
 xd=d_2020[0:53]-woche_marker_13bis19
-plt.plot(np.linspace(1,53,53),xd,label="Calc. Excess Deaths",lw=2)
+
+xd_smooth = savgol_filter(
+    xd,
+    window_length=7,  # Fenstergröße (ungerade!)
+    polyorder=3        # Polynomgrad
+)
+
+plt.plot(np.linspace(1,53,53),xd_smooth,label="Calc. Excess Deaths (smoothed)",lw=2)
 
 plt.legend(loc="upper left",facecolor="white",edgecolor="white")
 
@@ -188,16 +195,19 @@ plt.tight_layout()
 plt.savefig("../figures/Fig 2a de üs 2020 baseline 13-19 plus C19.png",dpi=1000)
 
 
+
+plt.savefig("../figures/Fig 2a de üs 2020 baseline 13-19 plus C19.tif",
+            dpi=600,pil_kwargs={"compression": "tiff_lzw"})
+
+
+#######################################
+corr_df=c19tote[["Woche","Tote"]]
+
+corr_df["xd"]=np.int64(xd)[9:]
+corr_df["xd_smooth"]=np.int64(xd_smooth)[9:]
+
+corr_df.to_csv("../../data_proc/corr/corr_2020.tsv",sep="\t")
+
 #################################
 
-# Auswertung
-# wochen 10-20
-# Indizes prüfen
 
-# w1_c19=c19tote["Todesfälle"].iloc[0:10].sum()   #ok
-
-
-# w1_üs=xd[11:20].sum() # w10-20
-
-# print("Todesfälle C19, 1. Welle:\t",w1_c19)
-# print("ÜS,1. Welle",w1_üs)

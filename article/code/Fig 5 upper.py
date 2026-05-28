@@ -80,4 +80,7 @@ ax.grid(True)
 ax.legend(loc="upper left",edgecolor="white")
 
 
-plt.savefig("../figures/Fig 5a C19 norm deaths.png")
+plt.savefig("../figures/Fig 5a C19 norm deaths.tif",
+            dpi=600,pil_kwargs={"compression": "tiff_lzw"})
+plt.savefig("../figures/Fig 5a C19 norm deaths.png",
+            dpi=1000)

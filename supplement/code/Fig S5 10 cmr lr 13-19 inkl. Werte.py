@@ -180,4 +180,5 @@ plt.tight_layout()
 
 
 
-#plt.savefig("../figures/Fig S5 de fit cmr 13-19 inkl psc.png")
+plt.savefig("../figures/Fig S5 de fit cmr 13-19 inkl psc.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})

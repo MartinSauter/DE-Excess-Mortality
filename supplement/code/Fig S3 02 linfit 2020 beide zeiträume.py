@@ -43,7 +43,7 @@ for woche in range(1,53,1):
     
     jahr=[]
     for j in range(2013,2020,1):
-        print(j,woche)
+        #print(j,woche)
         cond=((tmp["Year"]==j) & (tmp["Week"]==woche))
         jahr.append(tmp["Total"][cond].to_list()[0])
     
@@ -54,8 +54,6 @@ for woche in range(1,53,1):
     f1=k1.slope*7+k1.intercept
     
     woche_marker_13bis19.append(f1)
-    # lo_b.append(np.min(jahr_np))
-    # hi_b.append(np.max(jahr_np))
     
     ####################
     #   2020 von 15-19
@@ -68,7 +66,7 @@ for woche in range(1,53,1):
     jahr_list=[]
     
     for jahr in range(2020,2023,1):
-         print(jahr)
+         
          cond=((tmp["Year"]==jahr) & (tmp["Week"]==woche))
          jahr_list.append(tmp["Total"][cond].to_list()[0])
          
@@ -88,9 +86,6 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',
 
 
 
-# plt.suptitle("Mortality in Germany 2020 / Data: mortality.org & destatis.de , Vis. M. Sauter ",
-#              fontsize=18)
-
 plt.subplot(111)
 plt.grid(True)
 
@@ -101,15 +96,14 @@ plt.gca().set_yticklabels(np.intp(np.linspace(15000,25000,6)),fontsize=18)
 
 plt.ylabel("Weekly Deaths Reported",fontsize=18)
 
-# plt.gca().set_xticks(np.linspace(1,52,52))
-# plt.gca().set_xticklabels([])
+
 
 plt.gca().yaxis.set_major_formatter(FuncFormatter(format_func))
 
 plt.xlabel("Calendar Week",fontsize=18)
 plt.xlim(1,52)
 
-#xticks=np.array([1,5,9,13,17,21,25,29,33,37,41,45,49]).astype(int)
+
 xticks=np.array([1,4,8,12,16,20,24,28,32,36,40,44,48,52]).astype(int)
 
 
@@ -143,16 +137,28 @@ handles, labels = plt.gca().get_legend_handles_labels()
 dummy = plt.Rectangle((0,0), 1, 1, fc="gainsboro", 
                       edgecolor = 'none')
 handles.append(dummy)
-#labels.append("Min-Max 2013-2019")
 
 
 plt.legend(handles,labels,loc="upper left",
            facecolor="white",edgecolor="white")
 
-# #################################
 
-# plt.subplot(212)
+plt.fill_between(np.linspace(1,11,11), woche_marker_13bis19[0:11], 
+                 woche_marker_15bis19[0:11], 
+                 color="gainsboro",alpha=0.3)
+
 
 plt.tight_layout()
 
-plt.savefig("../figures/Fig S3 de üs 2020 2 baselines.png")
+
+plt.savefig("../figures/Fig S3 de üs 2020 2 baselines.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})
+
+
+delta_flu=sum(woche_marker_13bis19[0:10])-sum(woche_marker_15bis19[0:10])
+print("Difference CW 0-10:",int(delta_flu))
+
+delta_heat=sum(woche_marker_13bis19[24:36])-sum(woche_marker_15bis19[24:36])
+print("Difference CW 24-36",int(delta_heat))
+
+

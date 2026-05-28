@@ -87,4 +87,5 @@ ax.axvspan(2022,2023, color=c[2],alpha=0.3)
 plt.grid(True)
 plt.tight_layout()
 
-plt.savefig("../figures/Fig S4 Bev Zeitverlauf.png")
+plt.savefig("../figures/Fig S4 Bev Zeitverlauf.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})

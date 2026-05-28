@@ -11,7 +11,7 @@ import numpy as np
 from scipy.stats import linregress
 from cycler import cycler
 from matplotlib.ticker import FuncFormatter
-
+from scipy.signal import savgol_filter
 
 
 def format_func(value, tick_number):
@@ -46,7 +46,7 @@ for woche in range(1,53,1):
        
     todesfälle=[]
     for j in range(2013,2020,1):
-        print(j,woche)
+        #print(j,woche)
         cond=((tmp["Year"]==j) & (tmp["Week"]==woche))
         todesfälle.append(tmp["Total"][cond].to_list()[0])
     
@@ -177,7 +177,14 @@ plt.gca().yaxis.set_major_formatter(FuncFormatter(format_func))
 
 
 xd=d_2022-woche_marker_13bis19
-plt.plot(np.linspace(1,52,52),xd,label="Calc. Excess Deaths")
+
+
+xd_smooth = savgol_filter(
+    xd,
+    window_length=7,  # Fenstergröße (ungerade!)
+    polyorder=3        # Polynomgrad
+)
+plt.plot(np.linspace(1,52,52),xd_smooth,label="Calc. Excess Deaths (smoothed)")
 
 plt.plot(c19tote["Woche"],c19tote["Tote"]*2, 
          label="COVID19-Deaths weekly reported by RKI (scaled x2)",
@@ -191,4 +198,22 @@ plt.legend(loc="upper center",facecolor="white",edgecolor="white")
 
 plt.tight_layout()
 
-plt.savefig("../figures/Fig 2c de üs 2022 baseline 13-19 .png",dpi=1000)
+plt.savefig("../figures/Fig 2c de üs 2022 baseline 13-19.png",
+            dpi=1000)
+
+plt.savefig("../figures/Fig 2c de üs 2022 baseline 13-19.tif",
+            dpi=600,pil_kwargs={"compression": "tiff_lzw"})
+
+##################################
+# Merging for postproc. of correlation
+
+corr_df=pd.merge(c19tote[["Woche","Tote"]],
+                 abwasser[["week","viruslast"]],
+                 left_on="Woche",right_on="week", how="outer")
+corr_df=corr_df.drop(columns=["week"])
+
+corr_df["xd"]=np.int64(xd)
+corr_df["xd_smooth"]=np.int64(xd_smooth)
+
+corr_df.to_csv("../../data_proc/corr/corr_2022.tsv",sep="\t")
+

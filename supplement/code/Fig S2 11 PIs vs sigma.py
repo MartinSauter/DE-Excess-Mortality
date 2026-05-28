@@ -130,4 +130,6 @@ plt.tight_layout()
 plt.show()
 
 
-plt.savefig("../figures/Fig S2 de fit 13-19 inkl pi und sigma.png")
+plt.savefig("../figures/Fig S2 de fit 13-19 inkl pi und sigma.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})
+

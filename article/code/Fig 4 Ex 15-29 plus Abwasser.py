@@ -16,8 +16,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from scipy.stats import linregress
 from cycler import cycler
-from matplotlib.ticker import FuncFormatter
-
+from scipy.signal import savgol_filter
 
 
 def format_func(value, tick_number):
@@ -125,6 +124,7 @@ plt.ylim(0,100)
 ##################
 exzm=t_2022-bl_13_19
 
+
 plt.plot(monate,exzm,label="Excess Deaths calculated")
 
 abwasser=pd.read_csv("../../data_proc/wastewater/c19_2022_abwasser_monate_mw.csv")
@@ -134,4 +134,7 @@ plt.plot(abwasser["month"],abwasser["viruslast"]/4000,label="Wastewater Load (sc
 
 plt.legend(loc="upper left",edgecolor="none",fontsize=10)
 
-plt.savefig("../figures/Fig 4 Exm 15-29 in 2022 plus Abwasser.png")
+plt.savefig("../figures/Fig 4 Exm 15-29 in 2022 plus Abwasser.png",dpi=1000)
+            
+plt.savefig("../figures/Fig 4 Exm 15-29 in 2022 plus Abwasser.tif",
+            dpi=600,pil_kwargs={"compression": "tiff_lzw"})

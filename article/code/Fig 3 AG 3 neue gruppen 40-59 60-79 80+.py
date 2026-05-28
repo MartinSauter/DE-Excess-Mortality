@@ -54,6 +54,7 @@ df=df.drop(columns={"Alter unbekannt","Insgesamt"})
 # column "unter 5" becomes 4 (int)
 df.columns=np.linspace(0,100,101).astype(int)
 
+# 0 Jahre rausg.
 ag0=df.loc[:,0:14].sum(axis=1).to_numpy()
 ag15=df.loc[:,15:29].sum(axis=1).to_numpy()
 ag30=df.loc[:,30:39].sum(axis=1).to_numpy()
@@ -159,7 +160,7 @@ for ag in (ag0,ag15,ag30,ag40,ag60,ag80):
     ax[y,x].yaxis.set_major_formatter(FuncFormatter(format_func))
     
     if k==0:
-        with open("Tab.2 Data CDC Trend 13-19 20y age groups.txt", "a") as file:  
+        with open("Tab.3 Data CDC Trend 13-19 20y age groups.txt", "a") as file:  
             print("\t"*4+"2020"+"\t"*6+"2021"+"\t"*6+"2022"+"\t"*6+"2023",
                   file=file)
             print("\t"*4+"abs."+"\t"*3+"rel."+
@@ -167,7 +168,7 @@ for ag in (ag0,ag15,ag30,ag40,ag60,ag80):
                   "\t"*2+"abs."+"\t"*3+"rel."+
                   "\t"*2+"abs."+"\t"*3+"rel.",
                   file=file)
-    with open("Tab.2 Data CDC Trend 13-19 20y age groups.txt", "a") as file:
+    with open("Tab.3 Data CDC Trend 13-19 20y age groups.txt", "a") as file:
    
 
         print(f"{lbls[k]:<6}\t",end="",file=file)
@@ -193,4 +194,9 @@ for ag in (ag0,ag15,ag30,ag40,ag60,ag80):
 
 plt.tight_layout()
 
+
+
 plt.savefig("../figures/Fig 3 ÜS AG 13-19 3x20 gruppen.png",dpi=1000)
+
+plt.savefig("../figures/Fig 3 ÜS AG 13-19 3x20 gruppen.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})

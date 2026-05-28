@@ -30,7 +30,7 @@ plt.rcParams['axes.prop_cycle'] = cycler('color',
 ag=np.array([7,22,34.5,49.5,69.5,90])
 
 #exzm_rel=np.array([7.8e-5,6.42342E-06,0.000197838,1.80E-03,2.45E-02])
-exzm=pd.read_csv("./Tab.2 Data CDC Trend 13-19 20y age groups.txt",
+exzm=pd.read_csv("./Tab.3 Data CDC Trend 13-19 20y age groups.txt",
                      delimiter="\s+",skiprows=2,engine="python",
                      header=None,
                      index_col=0,           # erste Spalte = Zeilenindex)
@@ -94,4 +94,6 @@ ax.grid(True)
 ax.legend(loc="upper left",edgecolor="white")
 
 print(f"{lr.slope}")
-plt.savefig("../figures/Fig 5b exzm rel risk.png")
+plt.savefig("../figures/Fig 5b exzm rel risk.tif",
+            dpi=600,pil_kwargs={"compression": "tiff_lzw"})
+plt.savefig("../figures/Fig 5b exzm rel risk.png",dpi=1000)

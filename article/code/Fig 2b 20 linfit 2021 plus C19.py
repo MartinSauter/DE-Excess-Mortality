@@ -11,7 +11,7 @@ import numpy as np
 from scipy.stats import linregress
 from cycler import cycler
 from matplotlib.ticker import FuncFormatter
-
+from scipy.signal import savgol_filter
 
 
 def format_func(value, tick_number):
@@ -178,7 +178,14 @@ plt.plot(c19tote["Woche"],c19tote["Tote"],
          color="black")
 
 xd=d_2021-woche_marker_13bis19
-plt.plot(np.linspace(1,52,52),xd,label="Calc. Excess Deaths")
+
+xd_smooth = savgol_filter(
+    xd,
+    window_length=7,  # Fenstergröße (ungerade!)
+    polyorder=3        # Polynomgrad
+)
+
+plt.plot(np.linspace(1,52,52),xd_smooth,label="Calc. Excess Deaths (smoothed)")
 
 plt.legend(loc="upper center",facecolor="white",edgecolor="white")
 
@@ -188,3 +195,14 @@ plt.legend(loc="upper center",facecolor="white",edgecolor="white")
 plt.tight_layout()
 
 plt.savefig("../figures/Fig 2b de üs 2021 baseline 13-19.png",dpi=1000)
+plt.savefig("../figures/Fig 2b de üs 2021 baseline 13-19.tif",
+            dpi=600,pil_kwargs={"compression": "tiff_lzw"})
+
+
+#######################################
+corr_df=c19tote[["Woche","Tote"]]
+
+corr_df["xd"]=np.int64(xd)
+corr_df["xd_smooth"]=np.int64(xd_smooth)
+
+corr_df.to_csv("../../data_proc/corr/corr_2021.tsv",sep="\t")
