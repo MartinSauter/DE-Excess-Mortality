@@ -43,23 +43,20 @@ df=pd.read_csv("../../data_proc/pop/Pop_20y.tsv",sep="\t",
 
 
 
-# %%
+
 df=df.drop(columns=["2011","2012","2024"])
 # pop=[4325719, 4366360,4544298 ,4729203,4941910,5150685,5389106,5681135,
 # 5936434,6111655,6112952]
 
 
 
-# %%
+
 jahre=np.linspace(2013,2023,11).astype(int)
 x=0;y=0
 k=0
 
 
 pop80=df.loc["80+",:].values
-
-# pop=[4325719, 4366360,4544298 ,4729203,4941910,5150685,5389106,5681135,
-# 5936434,6111655,6112952]
 
 
 
@@ -86,9 +83,6 @@ ax.plot(jahre,pop80,lw=0.5,marker="o",color="salmon",
 
 c=plt.get_cmap('Paired').colors
 # # #############################################################
-# ax.axvspan(2011,2012, color=c[4], alpha=0.3)
-# ax.axvspan(2015,2016, color=c[2],alpha=0.3)
-# ax.axvspan(2022,2023, color=c[2],alpha=0.3)
 
 # ######################################
 
@@ -108,4 +102,7 @@ plt.grid(True)
 plt.legend(loc="upper left")
 plt.tight_layout()
 
-plt.savefig("../figures/Fig S7 Bev 80 + Zeitverlauf.png")
+plt.savefig("../figures/Fig S9 Bev 80 + Zeitverlauf.png",dpi=600)
+plt.savefig("../figures/Fig S9 Bev 80 + Zeitverlauf.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})
+

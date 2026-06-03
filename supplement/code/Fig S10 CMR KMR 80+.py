@@ -187,6 +187,6 @@ print(f"{psc_kmr[-4]:>10.2%}"
 
 
 
-#plt.savefig("../figures/Fig S5 de fit corrmr 13-19 inkl psc.png")
-
-
+plt.savefig("../figures/Fig S10 de fit corrmr 13-19 inkl psc.png",dpi=600)
+plt.savefig("../figures/Fig S10 de fit corrmr 13-19 inkl psc.tif",dpi=600,
+pil_kwargs={"compression": "tiff_lzw"})

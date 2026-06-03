@@ -99,6 +99,9 @@ ax.plot(years[2:],d15_fit_2[2:],
 ax.legend(loc="lower left", edgecolor="white")
 
 #plt.savefig("../figures/Fig S9 DN 15 29.png")
+plt.savefig("../figures/Fig S11 DN 15-29.png",dpi=600)
+plt.savefig("../figures/Fig S11 DN 15-29.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})
 
 #Output For Tab S7
 print("Tab S7, P-Score AG 15-29")

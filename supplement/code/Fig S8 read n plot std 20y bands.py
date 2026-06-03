@@ -109,4 +109,7 @@ for lbl in df.index:
 
 plt.tight_layout()
 
-plt.savefig("../figures/Fig S6 Bev Age Bands neu.png")
+plt.savefig("../figures/Fig S8 Bev Age Bands 20y.png",dpi=600)
+
+plt.savefig("../figures/Fig S8 Bev Age Bands 20y.tif",dpi=600,
+            pil_kwargs={"compression": "tiff_lzw"})

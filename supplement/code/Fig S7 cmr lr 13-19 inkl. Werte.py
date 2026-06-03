@@ -25,7 +25,8 @@ def format_func(value, tick_number):
 j=np.linspace(2010,2023,14).astype(int)
 
 df=pd.read_csv("../../data_raw/deaths/12613-0002_de.csv",delimiter=";",
-               skiprows=5,skipfooter=4,index_col=0,engine='python')
+               skiprows=5,skipfooter=5,index_col=0,engine='python')
+# skipfooter = 5 wg, 2024 !
 
 j=df.index.to_numpy()
 jf=j-2010
@@ -178,7 +179,8 @@ plt.legend(loc="upper left",facecolor="white",
 plt.tight_layout()
 
 
+plt.savefig("../figures/Fig S7 de fit cmr 13-19 inkl psc.png",dpi=600)
 
 
-plt.savefig("../figures/Fig S5 de fit cmr 13-19 inkl psc.tif",dpi=600,
+plt.savefig("../figures/Fig S7 de fit cmr 13-19 inkl psc.tif",dpi=600,
             pil_kwargs={"compression": "tiff_lzw"})

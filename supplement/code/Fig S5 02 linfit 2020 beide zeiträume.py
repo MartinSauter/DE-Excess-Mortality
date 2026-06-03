@@ -150,8 +150,8 @@ plt.fill_between(np.linspace(1,11,11), woche_marker_13bis19[0:11],
 
 plt.tight_layout()
 
-
-plt.savefig("../figures/Fig S3 de üs 2020 2 baselines.tif",dpi=600,
+plt.savefig("../figures/Fig S5 de üs 2020 2 baselines.png",dpi=600)
+plt.savefig("../figures/Fig S5 de üs 2020 2 baselines.tif",dpi=600,
             pil_kwargs={"compression": "tiff_lzw"})
 
 
