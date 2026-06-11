@@ -122,9 +122,9 @@ plt.legend(loc="upper left",facecolor="white",
 
 plt.tight_layout()
 
-# plt.savefig("../figures/Fig S2 de multi lr.tif",dpi=600,
-#            pil_kwargs={"compression": "tiff_lzw"})
-# plt.savefig("../figures/Fig S2 de multi lr.png",dpi=600)
+plt.savefig("../figures/Fig S1 de multi lr.tif",dpi=600,
+           pil_kwargs={"compression": "tiff_lzw"})
+plt.savefig("../figures/Fig S1 de multi lr.png",dpi=600)
 
 
 ###########################################################
@@ -169,10 +169,10 @@ plt.legend(loc="upper left",facecolor="white",
 
 
 
-# plt.savefig("../figures/Fig S3 de multi lr add act models.png",dpi=600)
+plt.savefig("../figures/Fig S3 de multi lr add act models.png",dpi=600)
            
-# plt.savefig("../figures/Fig S3 de multi lr add act models.tif",dpi=600,
-#            pil_kwargs={"compression": "tiff_lzw"})
+plt.savefig("../figures/Fig S3 de multi lr add act models.tif",dpi=600,
+           pil_kwargs={"compression": "tiff_lzw"})
 
 """
 Result:

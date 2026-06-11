@@ -124,9 +124,9 @@ plt.tight_layout()
 
 
 
-plt.savefig("../figures/Fig S1 de multi lr poisson.png",dpi=1000)
-plt.savefig("../figures/Fig S1 de multi lr poisson.svg")
-plt.savefig("../figures/Fig S1 de multi lr poisson.tif",dpi=600,
+plt.savefig("../figures/Fig S2 de multi lr poisson.png",dpi=1000)
+
+plt.savefig("../figures/Fig S2 de multi lr poisson.tif",dpi=600,
             pil_kwargs={"compression": "tiff_lzw"})
 
 """
